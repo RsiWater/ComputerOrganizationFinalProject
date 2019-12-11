@@ -36,13 +36,13 @@ public class ID {
 		rt=regs[(instruction&2031616)/65536];
 		rd=regs[(instruction&63488)/2048];
 		
-		System.out.println("Opcode: "+(instruction&-67108864));
-		System.out.println("Rs Number: "+((instruction&65011712)/2097152));
-		System.out.println("Rt Number: "+((instruction&2031616)/65536));
-		System.out.println("Address or Constant: "+(instruction&65535));
-		System.out.println("Rt Number: "+((instruction&2031616)/65536));
-		System.out.println("Rd Number: "+((instruction&63488)/2048));
-		System.out.println("Function: "+(instruction&63));
+		//System.out.println("Opcode: "+(instruction&-67108864));
+		//System.out.println("Rs Number: "+((instruction&65011712)/2097152));
+		//System.out.println("Rt Number: "+((instruction&2031616)/65536));
+		//System.out.println("Address or Constant: "+(instruction&65535));
+		//System.out.println("Rt Number: "+((instruction&2031616)/65536));
+		//System.out.println("Rd Number: "+((instruction&63488)/2048));
+		//System.out.println("Function: "+(instruction&63));
 		if(opcode==0) {  //add sub
 			if((instruction&63) == 32) {
 				idex.setRegIDEX(1, 2, 0, 0, 0, 0, 1, 0); //add 第二位設置aluOp也就是設置要做add或sub運算
