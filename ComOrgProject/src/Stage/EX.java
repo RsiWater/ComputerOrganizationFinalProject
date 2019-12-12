@@ -1,26 +1,51 @@
 package computer;
 
 
-class ex
+public class EX
 {
-   private int BA,reg1,reg2,add,regnum1,regnum2,ALUop,funct=0;
+   private int BA,reg1,reg2,address,regnum1,regnum2,ALUop,funct=0;
    private boolean ALUSrc,RegDst;
    private int[] EXMEMbuffer=new int[5];
    
-   public void set(int BA,int reg1,int reg2,int add,int regnum1,int regnum2,boolean ALUSrc,int ALUop,boolean RegDst,int funct) {
+   public void setBA(int BA) {
 	   this.BA=BA;
+	   
+   }
+   public void setreg1(int reg1) {
 	   this.reg1=reg1;
+	   
+   }
+   public void setreg2(int reg2) {
 	   this.reg2=reg2;
-	   this.add=add;
+	   
+   }
+   public void setaddress(int address) {
+	   this.address=address;
+	   
+   }
+   public void setregnum1(int regnum1) {
 	   this.regnum1=regnum1;
+	   
+   }
+   public void setregnum2(int regnum2) {
 	   this.regnum2=regnum2;
-	   this.ALUSrc=ALUSrc;
+	   
+   }
+   public void setALUop(int ALUop) {
 	   this.ALUop=ALUop;
+	   
+   }
+   public void setALUSrc(boolean ALUSrc) {
+	   this.ALUSrc=ALUSrc;
+	   
+   }
+   public void setRegDst(boolean RegDst) {
 	   this.RegDst=RegDst;
-	   this.funct=funct;
+	   
    }
    
-   public int getALU() {
+   
+   public int getALUresult() {
 	   if(ALUop==0) {
 		   if(ALUSrc==false)
 		   {
@@ -29,7 +54,7 @@ class ex
 		   }
 		   else
 		   {
-			   EXMEMbuffer[2]=reg1+add;
+			   EXMEMbuffer[2]=reg1+address/4;   //lw rt,offset(rs)
 		   }
 	   }
 	   else if(ALUop==1)
@@ -41,11 +66,12 @@ class ex
 		   }
 		   else
 		   {
-			   EXMEMbuffer[2]=reg1-add;
+			   EXMEMbuffer[2]=reg1-address;
 		   }
 	   }
 	   else
 	   {
+		   funct=address & 63;
 		   if(funct==32)
 		   {
 			   if(ALUSrc==false)
@@ -55,7 +81,7 @@ class ex
 			   }
 			   else
 			   {
-				   EXMEMbuffer[2]=reg1+add;
+				   EXMEMbuffer[2]=reg1+address;
 			   }
 		   }
 		   else
@@ -67,7 +93,7 @@ class ex
 			   }
 			   else
 			   {
-				   EXMEMbuffer[2]=reg1-add;
+				   EXMEMbuffer[2]=reg1-address;
 			   }
 		   }
 	   }
@@ -84,7 +110,7 @@ class ex
 
    public int getBranch()
    {
-	   EXMEMbuffer[0]=BA+add*4;
+	   EXMEMbuffer[0]=BA+address*4;
 	   return EXMEMbuffer[0];
    }
    
@@ -115,11 +141,11 @@ class ex
    }
 }
 
-public class EX
+/*public class EX
 {
 	public static void main(String argv[])
 	{
 		ex ex1=new ex();
 		
 	}
-}
+}*/
