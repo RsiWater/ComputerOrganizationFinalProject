@@ -57,12 +57,15 @@ public class ID {
 		if((checkreg1==exmem.getReg()||checkreg2==exmem.getReg())&&(checkreg1!=0&&checkreg2!=0&&exmem.getReg()!=0)&&(exmem.getRegWrite()==true))
 		{
 			exhazardflag=true;
-			//System.out.println("stall");
+			System.out.println("stall");
 		}
+		else
+		{
 		if((checkreg1==memwb.getDisReg()||checkreg2==memwb.getDisReg())&&(checkreg1!=0&&checkreg2!=0&&memwb.getDisReg()!=0)&&(memwb.getRegWrite()==true))
 		{
 			memhazardflag=true;
-			//System.out.println("stall");
+			System.out.println("m-stall");
+		}
 		}
 		reg1=regs[(ifid.getInstruction_machineCode()&65011712)/2097152].getValue();
 		reg2=regs[(ifid.getInstruction_machineCode()&2031616)/65536].getValue();
